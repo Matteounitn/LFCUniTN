@@ -192,6 +192,53 @@ La grammatiga $G_3$ è *dipendente da contesto*, perchè ha almeno una produzion
 **DEF:** Un linguaggio $L$ è *libero da contesto* se esiste una grammatica libera $G$ tale che $L=L(G)$
 
 
+## 20/09/2019
 
+[Recap di lezione precedente]
 
+ Per le grammatiche libere da contesto negli alberi di derivazione si parla di derivazioni **right-most** e **left-most**
+
+Ad esempio $E\rightarrow E+E \mid E*E \mid 7 $ vogliamo derivare $7+7*7$ con la right-most $E\Rightarrow E+E\Rightarrow E+E*E\Rightarrow E+E+7\Rightarrow E+7*7\Rightarrow 7+7*7$
+
+```mermaid
+graph TD;
+s[E]-->E
+E-->aaa[7]
+s-->+
+s-->x[E]
+x-->a'[E]
+a'-->a''[7]
+x-->b'[*]
+x-->x'[E]
+x'-->7
+```
+
+Una grammatica $G$ è **ambigua** se esiste $w\leftarrow L(G)$ che può essere derivato con $2$ derivazioni distinte, entrambe right-most o entrambe left-most.
+
+```pseudocode
+S	->if B then S else S |
+		if B then S |
+		altro
+		
+B ->true | false
+
+T={if, then, else, altro, true, false}
+```
+
+Dimostrare che questa grammatica è ambigua
+
+> `if true then if false then altro else altro`, in questo caso di quale if è l'else? Boh, è ambigua!
+
+$s\Rightarrow if\ true\ then\ S\ else \underbrace S\\\Rightarrow if\ true\ then\ \underbrace S\ else\ altro\\\Rightarrow if\ true\ then\ if\ false\ then\ \underbrace S\ else\ altro\\\Rightarrow if\ true\ then\ if\ false\ then\ altro\ else\ altro $
+
+Conosciuto come il problema del **dangling else**
+
+**LEMMA:** I linguaggi liberi sono chiusi rispetto all'unione.
+
+**Dimostrazione** Siano $L_1$ e $L_2$ due linguaggi liberi. Allora esistono due grammatiche libere $G_1$ e $G_2$ tali che $L_1=L(G_1)$ e $L_2=L(G_2)$.
+Sia $G_1=(V_1,T_1,P_1,S_1)$ e $G_2=(v_2,T_2,P_2,S_2)$.
+Rinominono i non terminali di $G_1$ e $G_2$ in modo da non avere clash di nomi. Chiamiamo $V'_1$ e $V'_2$ i vocabolari ottenuti per direnomizaione di $V_1$ e di $V_2$ e scelgo un nuvo non terminale, diciamo $Z$.
+Definiamo $G=(V'_1∪V'_2∪\{Z\},T_1∪T_2,P'_1∪P'_2∪\{Z\rightarrow S'_1\mid S'_2\},Z)$
+
+**LEMMA:** I linguaggi liberi sono chiusi rispetto alla concatenazione
 
