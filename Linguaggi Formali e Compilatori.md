@@ -158,7 +158,7 @@ Esempio
 
 $S\Rightarrow \underbrace{aA}B\Rightarrow a\underbrace{aA}bb\Rightarrow aaa\underbrace{A}bbb\Rightarrow aaabbb$ quindi $L(G_1)=\{a^nb^n|n>0\}$
 
-$G_2\\^{(1)}A\rightarrow aA\\^{(2)}A\rightarrow A\\^{(3)}B\rightarrow Bb \\^{(4)}B\rightarrow B$
+$G_2\\^{(1)}S\rightarrow aA\\^{(2)}A\rightarrow A\\^{(3)}B\rightarrow Bb \\^{(4)}B\rightarrow B$
 
 soluz: $L(G_2)=\{a^nb^n|n>0\}$
 
